@@ -1,0 +1,155 @@
+@import "/src/styles/constants";
+
+.modal {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  padding: 10px 20px;
+  background: $dark;
+  border-radius: 8px;
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+
+  @media (min-width: $tablet-width) {
+    width: 600px;
+    padding: 30px 50px;
+  }
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    backdrop-filter: blur(3px)
+  }
+
+  &__title {
+    margin-bottom: 30px;
+    font-weight: 100;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: $white;
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  &__description {
+    margin-bottom: 30px;
+  }
+
+  &__fields-list {
+    list-style: none;
+    margin-bottom: 30px;
+  }
+
+  &__field-label {
+    display: flex;
+    flex-direction: column;
+    color: $primary;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  &__value {    
+    position: relative;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    background: $medium-grey;
+    color: $white;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    text-transform: none;
+    border-radius: 3px;
+  }
+
+  &__movie-id {
+    margin: 10px 0 20px 0;
+    font-size: 14px;
+    color: $white;
+  }
+
+  &__genre {
+    width: 100%;
+    min-height: 37px;
+    padding-right: 25px;
+    caret-color: transparent;
+    cursor: pointer;
+
+    &-wrapper {
+      position: relative;
+    }
+
+    &-icon {
+      position: absolute;
+      top: 23px;
+      right: 15px;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 9px 0 9px;
+      border-color: $primary transparent transparent transparent;
+      cursor: pointer;
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 2;
+
+    &::before, &::after {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      content: '';
+      width: 3px;
+      height: 25px;
+      background-color: $white;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+input[type="date"] {
+  &::-webkit-calendar-picker-indicator {
+    background: transparent;
+  }
+
+  &:after {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    content: '';
+    background-image: url('./assets/calendar-icon.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    filter: invert(46%) sepia(90%) saturate(3472%) hue-rotate(328deg) brightness(100%) contrast(93%);
+  }
+}
+
+input[type=checkbox]:checked {
+  filter: invert(46%) sepia(90%) saturate(3472%) hue-rotate(328deg) brightness(100%) contrast(93%);
+}
