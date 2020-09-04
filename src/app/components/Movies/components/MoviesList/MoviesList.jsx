@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { moviesList } from '@/data/moviesList';
@@ -7,12 +7,14 @@ import { MovieCard } from '../MovieCard/MovieCard';
 import './MoviesList.scss';
 
 export const MoviesList = ({ currentFilter, currentSortingOption }) => {
-  const filteredAndSortedMovies = moviesList
+  const filteredAndSortedMovies = useMemo(() => moviesList
     .filter(({ genre }) => genre.some((item) => item.toLowerCase().includes(currentFilter)) || currentFilter === 'all')
     .sort((a, b) => {
       if (currentSortingOption === 'title') return a.title > b.title ? 1 : -1;
       return a.year > b.year ? 1 : -1;
-    });
+    })
+  , [currentFilter, currentSortingOption]);
+
   const filteredMoviesText = filteredAndSortedMovies.length.toString().slice(-1) === '1' ? 'movie found' : 'movies found';
 
   return (

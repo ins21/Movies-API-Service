@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import { ModalButton } from '../ModalButton/ModalButton';
 import { GenrePickerModal } from '../GenrePickerModal/GenrePickerModal';
+import { useToggle } from '@/utils/customHooks/useToggle';
 
 export const AddMovieModal = ({ onClose }) => {
   const [inputValues, setInputValues] = useState({});
   const [pickedGenres, setPickedGenres] = useState(new Set());
-  const [isGenrePickerModalOpened, setGenrePickerModalOpened] = useState(false);
+  const [isGenrePickerModalOpened, toggleGenrePickerModal] = useToggle(false);
 
   const fields = [
     { labelName: 'title', placeholder: 'Title here' },
@@ -33,15 +34,10 @@ export const AddMovieModal = ({ onClose }) => {
       : setPickedGenres(new Set(pickedGenres.add(value)));
   };
 
-  const onGenrePickerClose = event => {
-    setGenrePickerModalOpened(false);
-    event.stopPropagation();
-  };
-
   const getFieldContent = (labelName, placeholder) => {
     switch (labelName) {
     case 'genre': return (
-      <p className='modal__genre-wrapper' onClick={() => setGenrePickerModalOpened(true)}>
+      <p className='modal__genre-wrapper' onClick={toggleGenrePickerModal}>
         <input
           className='modal__value modal__genre'
           placeholder={placeholder}
@@ -87,7 +83,7 @@ export const AddMovieModal = ({ onClose }) => {
           <GenrePickerModal
             pickedGenres={pickedGenres}
             onCheckBoxChange={onCheckBoxChange}
-            onClose={onGenrePickerClose}
+            onClose={toggleGenrePickerModal}
           />
       }
       <span className='modal__close' onClick={onClose} />
