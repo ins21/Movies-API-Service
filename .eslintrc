@@ -1,0 +1,32 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "plugins": [
+    "babel",
+    "react"
+  ],
+  "env": {
+    "browser" : true,
+    "jest": true
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "key-spacing": "off",
+    "jsx-quotes": ["error", "prefer-single"],
+    "max-len": ["error", 140, 2, { "ignoreTrailingComments": true, "ignoreUrls": true }],
+    "object-curly-spacing": ["error", "always"],
+    "comma-dangle": "off",
+    "semi": ["error", "always"],
+    "semi-spacing": ["error", {"before": false, "after": true}],
+    "no-extra-semi": "error",
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    "no-unexpected-multiline": "error",
+    "no-empty": "error",
+    "react/prop-types": "warn",
+    "react/no-did-update-set-state": "off",
+    "no-console": 2
+  }
+}

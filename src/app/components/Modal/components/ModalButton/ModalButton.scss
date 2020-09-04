@@ -1,0 +1,29 @@
+@import "/src/styles/constants";
+
+.modal {
+  &__button {
+    width: 130px;
+    height: 45px;
+    margin-left: 10px;
+    font-size: 14px;
+    border: 1px solid $primary;
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &__primary-button {
+    background: $primary;
+    color: $white;
+  }
+
+  &__secondary-button {
+    background: $dark;
+    color: $primary;
+  }
+}

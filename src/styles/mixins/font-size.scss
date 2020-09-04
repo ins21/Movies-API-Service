@@ -1,0 +1,9 @@
+@import "/src/styles/constants/widths";
+
+@mixin font-size() {
+  font-size: 12px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+  }
+}

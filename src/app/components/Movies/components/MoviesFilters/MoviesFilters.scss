@@ -1,0 +1,81 @@
+@import "/src/styles/constants/index";
+@import "/src/styles/mixins/font-size";
+
+.movies-filters {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
+  &:after {
+    display: none;
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: $light-grey;
+
+    @media (min-width: $tablet-width) {
+      display: block;
+    }
+  }
+
+  &__list {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-right: auto;
+    list-style: none;
+
+    @media (min-width: $tablet-width) {
+      width: auto;
+      margin-bottom: 0;
+    }
+
+    &-item {
+      @include font-size();
+      margin-right: 10px;
+      padding: 10px 0;
+      cursor: pointer;
+
+      @media (min-width: $tablet-width) {
+        margin-right: 20px;
+      }
+
+      &--active {
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: '';
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 2px;
+          background-color: $primary;
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  &__sort {
+    @include font-size();
+    margin-left: 20px;
+    color: $white;
+    background-color: $dark;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &-label {
+      @include font-size();
+      color: $light-grey;
+    }
+  }
+}

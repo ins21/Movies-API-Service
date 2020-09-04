@@ -1,0 +1,84 @@
+@import "/src/styles/constants/index";
+@import "/src/styles/mixins/font-size";
+
+.header {
+  position: relative;
+  min-height: 200px;
+  align-content: flex-start;
+  margin-bottom: 10px;
+  background-image: url('./assets/images/header.png');
+  background-size: cover;
+  color: $primary;
+
+  @media (min-width: $tablet-width) {
+    min-height: 250px;
+  }
+
+  &__title {
+    margin-right: auto;
+    margin-bottom: 40px;
+  }
+
+  &__add-button {
+    width: 120px;
+    height: 30px;
+    @include font-size();
+    font-weight: 600;
+    background-color: $light-grey;
+    opacity: 0.9;
+    color: $primary;
+  }
+
+  &__description {
+    width: 100%;
+    margin-bottom: 20px;
+    font-weight: 100;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: $white;
+    text-transform: uppercase;
+    text-align: center;
+
+    @media (min-width: $tablet-width) {
+      margin: 0 50px 20px 50px;
+      text-align: left;
+    }
+  }
+
+  &__search {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: $tablet-width) {
+      margin: 0 50px;
+    }
+
+    &-input {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 16px;
+      color: $white;
+      background-color: $dark;
+      border: none;
+      border-radius: 4px;
+
+      &::placeholder {
+        font-size: 14px;
+        opacity: 0.5;
+      }
+    }
+
+    &-button {
+      width: 150px;
+      height: 40px;
+      margin-left: 10px;
+      @include font-size();
+      border: none;
+      background-color: $primary;
+      color: $white;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+}
