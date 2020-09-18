@@ -1,0 +1,2 @@
+export const SHOW_SEARCH = 'SHOW_SEARCH';
+export const SHOW_MOVIE_DETAILS = 'SHOW_MOVIE_DETAILS';

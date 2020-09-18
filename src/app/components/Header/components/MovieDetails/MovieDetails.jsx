@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { moviesList } from '@/data/moviesList';
-
 import searchIcon from './assets/search-icon.svg';
 import './MovieDetails.scss';
 
-export const MovieDetails = ({ movieId, setHeaderContext }) => {
-  const movie = moviesList.find(item => item.id === movieId);
-  const { title, genre, year, image, runtime, overview } = movie;
+export const MovieDetails = ({ showSearch, movie }) => {
+  const { title, genres, release_date, poster_path, runtime, overview, vote_average } = movie;
 
   return (
     <section className='movie-details'>
-      <img className='movie-details__search-img' src={searchIcon} onClick={() => setHeaderContext('search')} />
+      <img className='movie-details__search-img' src={searchIcon} onClick={showSearch} />
       <div className='movie-details__image-wrapper'>
-        <img className='movie-details__image' src={image} alt={title} />
+        <img className='movie-details__image' src={poster_path} alt={title} />
       </div>
       <div className='movie-details__info-wrapper'>
-        <h2 className='movie-details__title'>{title}</h2>
-        <p className='movie-details__genre'>{genre.join(', ')}</p>
+        <h2 className='movie-details__title'>{title}
+          <span className='movie-details__rating'>{vote_average || 'N/A'}</span>
+        </h2>
+        <p className='movie-details__genres'>{genres.join(', ')}</p>
         <p className='movie-details__year-and-runtime'>
-          <span className='movie-details__year'>{year.slice(0, 4)}</span>
-          <span className='movie-details__runtime'>{runtime}</span>
+          <span className='movie-details__year'>{release_date?.slice(0, 4)}</span>
+          <span className='movie-details__runtime'>{runtime} minutes</span>
         </p>
         <p className='movie-details__overview'>{overview}</p>
       </div>
@@ -30,6 +29,6 @@ export const MovieDetails = ({ movieId, setHeaderContext }) => {
 };
 
 MovieDetails.propTypes = {
-  movieId: PropTypes.string,
-  setHeaderContext: PropTypes.func,
+  movie: PropTypes.object,
+  showSearch: PropTypes.func,
 };

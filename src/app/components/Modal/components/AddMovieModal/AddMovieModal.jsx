@@ -2,25 +2,33 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ModalButton } from '../ModalButton/ModalButton';
-import { GenrePickerModal } from '../GenrePickerModal/GenrePickerModal';
+import { GenresPickerModal } from '../GenresPickerModal/GenresPickerModal';
 import { useToggle } from '@/utils/customHooks/useToggle';
 
-export const AddMovieModal = ({ onClose }) => {
+export const AddMovieModal = ({ addMovie, onClose }) => {
   const [inputValues, setInputValues] = useState({});
   const [pickedGenres, setPickedGenres] = useState(new Set());
-  const [isGenrePickerModalOpened, toggleGenrePickerModal] = useToggle(false);
+  const [isGenresPickerModalOpened, toggleGenresPickerModal] = useToggle(false);
 
   const fields = [
     { labelName: 'title', placeholder: 'Title here' },
     { labelName: 'release date', placeholder: 'Select date' },
     { labelName: 'movie url', placeholder: 'Movie URL here' },
-    { labelName: 'genre', placeholder: 'Select genre' },
+    { labelName: 'genres', placeholder: 'Select genres' },
     { labelName: 'overview', placeholder: 'Overview here' },
     { labelName: 'runtime', placeholder: 'Runtime here' },
   ];
 
   const onInputChange = (event, name) => {
     setInputValues({ ...inputValues, [name]: event.target.value });
+  };
+
+  const onSave = () => {
+    const { title, overview, runtime, 'movie url': poster_path = 'https://image.tmdb.org/t/p/w500/ylXCdC106IKiarftHkcacasaAcb.jpg', 'release date': release_date } = inputValues;
+    const newMovie = { title, overview, runtime: +runtime, poster_path, release_date, genres: [...pickedGenres] };
+
+    addMovie(newMovie);
+    onClose();
   };
 
   const onReset = () => {
@@ -36,15 +44,16 @@ export const AddMovieModal = ({ onClose }) => {
 
   const getFieldContent = (labelName, placeholder) => {
     switch (labelName) {
-    case 'genre': return (
-      <p className='modal__genre-wrapper' onClick={toggleGenrePickerModal}>
+    case 'genres': return (
+      <p className='modal__genres-wrapper' onClick={toggleGenresPickerModal}>
         <input
-          className='modal__value modal__genre'
+          className='modal__value modal__genres'
           placeholder={placeholder}
           value={[...pickedGenres].sort((a, b) => (a > b ? 1 : -1)).join(', ')}
           readOnly
+          required='required'
         />
-        <span className='modal__genre-icon' />
+        <span className='modal__genres-icon' />
       </p>
     );
     default: return (
@@ -76,14 +85,14 @@ export const AddMovieModal = ({ onClose }) => {
       </ul>
       <div className='modal__button-wrapper'>
         <ModalButton type='secondary' text='reset' onClick={onReset} />
-        <ModalButton type='primary' text='save' onClick={onClose} />
+        <ModalButton type='primary' text='save' onClick={onSave} />
       </div>
       {
-        isGenrePickerModalOpened &&
-          <GenrePickerModal
+        isGenresPickerModalOpened &&
+          <GenresPickerModal
             pickedGenres={pickedGenres}
             onCheckBoxChange={onCheckBoxChange}
-            onClose={toggleGenrePickerModal}
+            onClose={toggleGenresPickerModal}
           />
       }
       <span className='modal__close' onClick={onClose} />
@@ -93,4 +102,5 @@ export const AddMovieModal = ({ onClose }) => {
 
 AddMovieModal.propTypes = {
   onClose: PropTypes.func,
+  addMovie: PropTypes.func,
 };

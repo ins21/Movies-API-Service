@@ -27,6 +27,7 @@
     "no-empty": "error",
     "react/prop-types": "warn",
     "react/no-did-update-set-state": "off",
+    "camelcase": "off",
     "no-console": 2
   }
 }

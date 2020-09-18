@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Modal } from '@/app/components/Modal/Modal';
+import Modal from '@/app/components/Modal/Modal';
 
 import './Search.scss';
 
