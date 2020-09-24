@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 import './ModalButton.scss';
 
-export const ModalButton = ({ type, text, onClick }) => (
-  <button className={`modal__button modal__${type}-button`} onClick={onClick}>
+export const ModalButton = ({ mode, text, onClick, type }) => (
+  <button className={`modal__button modal__${mode}-button`} type={type} onClick={onClick}>
     {text}
   </button>
 );
 
 ModalButton.propTypes = {
-  type: PropTypes.string,
+  mode: PropTypes.string,
   text: PropTypes.string,
+  type: PropTypes.string,
   onClick: PropTypes.func,
 };

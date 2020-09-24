@@ -15,7 +15,7 @@ export const DeleteMovieModal = ({ id, deleteMovie, showSearch, onClose }) => {
       <h2 className='modal__title'>Delete Movie</h2>
       <p className='modal__description'>Are you sure you want to delete this movie?</p>
       <div className='modal__button-wrapper'>
-        <ModalButton type='primary' text='confirm' onClick={onDelete} />
+        <ModalButton mode='primary' text='confirm' onClick={onDelete} />
       </div>
       <span className='modal__close' onClick={onClose} />
     </section>
