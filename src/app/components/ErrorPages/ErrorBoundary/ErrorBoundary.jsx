@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { AppTitle } from '../AppTitle/AppTitle';
+import { AppTitle } from '@/app/components/AppTitle/AppTitle';
 
 import './ErrorBoundary.scss';
 

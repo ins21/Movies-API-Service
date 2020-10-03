@@ -1,29 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 
 import Modal from '@/app/components/Modal/Modal';
+import { url } from '@/utils/constants';
 
 import './Search.scss';
 
-export const Search = () => {
+export const Search = ({ fetchMovies, clearMoviesList }) => {
   const [inputValue, setInputValue] = useState('');
   const [currentModal, setCurrentModal] = useState();
+  const history = useHistory();
+
+  const findMoviesByTitleOrGenre = value => {
+    clearMoviesList();
+    history.push(`/search/${value}`);
+    fetchMovies(`${url}?search=${value}&searchBy=title`);
+    fetchMovies(`${url}?search=${value}&searchBy=genres`);
+    setInputValue('');
+  };
 
   const onInputChange = event => {
     setInputValue(event.target.value);
   };
 
   const onSearchClick = event => {
-    event.preventDefault();
-    setInputValue('');
+    if (inputValue.trim().length) {
+      event.preventDefault();
+      findMoviesByTitleOrGenre(inputValue);
+    }
   };
 
   const onEnterPress = event => {
-    if (event.key === 'Enter') setInputValue('');
+    if (event.key === 'Enter' && inputValue.trim().length) {
+      findMoviesByTitleOrGenre(inputValue);
+    }
   };
 
   const onAddClick = () => {
     setCurrentModal('add');
   };
+
+  useEffect(() => {
+    const { location: { pathname } } = history;
+    const query = pathname.replace('/search/', '');
+
+    if (pathname.includes('/search/') && query.length) {
+      findMoviesByTitleOrGenre(query);
+    }
+  }, []);
 
   return (
     <section className='search'>
@@ -53,4 +78,9 @@ export const Search = () => {
       }
     </section>
   );
+};
+
+Search.propTypes = {
+  fetchMovies: PropTypes.func,
+  clearMoviesList: PropTypes.func,
 };

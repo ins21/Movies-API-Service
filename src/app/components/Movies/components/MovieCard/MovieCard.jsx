@@ -19,7 +19,7 @@ export const MovieCard = ({ movie, showMovieDetails }) => {
       <img className='movie-card__image' src={poster_path} alt={title} />
       <p className='movie-card__title'>{title}</p>
       <p className='movie-card__year'>{release_date}</p>
-      <p className='movie-card__genres'>{genres.join(', ')}</p>
+      <p className='movie-card__genres'>{genres?.join(', ')}</p>
       <div className='movie-card__dots' tabIndex='1'>
         {Array(3).fill(null).map((item, index) => <span className='movie-card__dot' key={index} />)}
         <ul className='movie-card__actions'>

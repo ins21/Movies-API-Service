@@ -10,16 +10,17 @@ export const MoviesList = ({ moviesList, showMovieDetails }) => {
 
   return (
     <section className='movies-list'>
-      <p className='movies-list__found-movies'>
-        <span className='movies-list__found-movies-amount'>
-          {`${moviesList?.length} `}
-        </span>
-        {filteredMoviesText}
-      </p>
+      {moviesList?.length > 0 &&
+        <p className='movies-list__found-movies'>
+          <span className='movies-list__found-movies-amount'>
+            {`${moviesList?.length} `}
+          </span>
+          {filteredMoviesText}
+        </p>}
       {
         moviesList?.map(movie => <MovieCard key={movie.id} movie={movie} showMovieDetails={showMovieDetails} />)
       }
-      {moviesList?.length === 0 && 'Nothing found'}
+      {moviesList?.length === 0 && <span className='movies-list__nothing-found'>No Movie Found</span>}
     </section>
   );
 };

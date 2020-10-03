@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -12,11 +12,7 @@ import { filteredAndSortedMovies } from '@/utils/selectors';
 import './Movies.scss';
 
 const Movies = props => {
-  const { filter, sortingOption, showMovieDetails, fetchMovies, filteredAndSortedMovies, setFilter, setSortingOption } = props;
-
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+  const { filter, sortingOption, showMovieDetails, filteredAndSortedMovies, setFilter, setSortingOption } = props;
 
   return (
     <main className='container movies'>
@@ -39,7 +35,6 @@ const Movies = props => {
 Movies.propTypes = {
   filter: PropTypes.string,
   sortingOption: PropTypes.string,
-  fetchMovies: PropTypes.func,
   showMovieDetails: PropTypes.func,
   filteredAndSortedMovies: PropTypes.array,
   setFilter: PropTypes.func,

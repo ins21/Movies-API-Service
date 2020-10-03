@@ -1,0 +1,34 @@
+@import "/src/styles/constants/index";
+
+.not-found-page {
+  position: relative;
+  flex-direction: column;
+  background: $dark;
+  align-content: flex-start;
+
+  &__message {
+    width: 100%;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 60px auto;
+  }
+
+  .modal__button {
+    width: 180px;
+    margin: 0 auto 200px auto;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}
