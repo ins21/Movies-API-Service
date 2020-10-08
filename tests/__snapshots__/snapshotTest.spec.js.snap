@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test of "AppTitle" component Must work correctly 1`] = `
+<div
+  className="app-title"
+>
+  <span
+    className="app-title__first-word"
+  >
+    netflix
+  </span>
+  <span
+    className="app-title__second-word"
+  >
+    roulette
+  </span>
+</div>
+`;

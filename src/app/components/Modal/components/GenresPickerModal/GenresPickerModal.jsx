@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { genresList } from '@/data/genresList';
+import { genresList } from '../../../../../data/genresList';
 
 import './GenresPickerModal.scss';
 
