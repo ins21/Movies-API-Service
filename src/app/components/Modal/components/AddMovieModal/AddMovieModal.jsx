@@ -1,31 +1,39 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useFormik } from 'formik';
 
 import { ModalButton } from '../ModalButton/ModalButton';
-import { GenrePickerModal } from '../GenrePickerModal/GenrePickerModal';
+import { GenresPickerModal } from '../GenresPickerModal/GenresPickerModal';
 import { useToggle } from '@/utils/customHooks/useToggle';
+import { addMovieFields } from './constants';
+import { formValidation } from '../../utils/formValidation';
 
-export const AddMovieModal = ({ onClose }) => {
+export const AddMovieModal = ({ addMovie, onClose }) => {
   const [inputValues, setInputValues] = useState({});
   const [pickedGenres, setPickedGenres] = useState(new Set());
-  const [isGenrePickerModalOpened, toggleGenrePickerModal] = useToggle(false);
+  const [isGenresPickerModalOpened, toggleGenresPickerModal] = useToggle(false);
 
-  const fields = [
-    { labelName: 'title', placeholder: 'Title here' },
-    { labelName: 'release date', placeholder: 'Select date' },
-    { labelName: 'movie url', placeholder: 'Movie URL here' },
-    { labelName: 'genre', placeholder: 'Select genre' },
-    { labelName: 'overview', placeholder: 'Overview here' },
-    { labelName: 'runtime', placeholder: 'Runtime here' },
-  ];
+  const formik = useFormik({
+    initialValues: inputValues,
+    validate: (values) => formValidation(values, pickedGenres),
+    validateOnChange: false,
+    validateOnBlur: false,
+    enableReinitialize: true,
+    onSubmit: (values) => onSave(values),
+  });
 
-  const onInputChange = (event, name) => {
-    setInputValues({ ...inputValues, [name]: event.target.value });
+  const onSave = (formikValues) => {
+    const { title, overview, runtime, 'movie url': poster_path, 'release date': release_date } = formikValues;
+    const newMovie = { title, overview, runtime: +runtime, poster_path, release_date, genres: [...pickedGenres] };
+
+    addMovie(newMovie);
+    onClose();
   };
 
   const onReset = () => {
     setInputValues({});
     setPickedGenres(new Set());
+    formik.resetForm({});
   };
 
   const onCheckBoxChange = ({ target: { value } }) => {
@@ -35,36 +43,50 @@ export const AddMovieModal = ({ onClose }) => {
   };
 
   const getFieldContent = (labelName, placeholder) => {
+    const onGenresClick = event => {
+      setInputValues(formik.values);
+      event.preventDefault();
+      toggleGenresPickerModal();
+    };
+
     switch (labelName) {
-    case 'genre': return (
-      <p className='modal__genre-wrapper' onClick={toggleGenrePickerModal}>
+    case 'genres': return (
+      <p className='modal__genres-wrapper'>
         <input
-          className='modal__value modal__genre'
+          id={labelName}
+          name={labelName}
+          className='modal__value modal__genres'
           placeholder={placeholder}
           value={[...pickedGenres].sort((a, b) => (a > b ? 1 : -1)).join(', ')}
           readOnly
+          required='required'
         />
-        <span className='modal__genre-icon' />
+        <span className='modal__genres-icon' onClick={onGenresClick} />
+        {formik.errors[labelName] ? <span className='modal__field-error'>{formik.errors[labelName]}</span> : null}
       </p>
     );
     default: return (
-      <input
-        className='modal__value'
-        placeholder={placeholder}
-        value={inputValues[labelName] ?? ''}
-        onChange={event => onInputChange(event, labelName)}
-        type={labelName === 'release date' ? 'date' : 'text'}
-      />
+      <>
+        <input
+          id={labelName}
+          className='modal__value'
+          placeholder={placeholder}
+          name={labelName}
+          type={labelName === 'release date' ? 'date' : 'text'}
+          onChange={formik.handleChange}
+          value={formik.values[labelName] || ''}
+        />
+        {formik.errors[labelName] ? <span className='modal__field-error'>{formik.errors[labelName]}</span> : null}
+      </>
     );
     }
   };
 
   return (
     <section className='modal'>
-      <h2 className='modal__title'>Add Movie</h2>
-      <ul className='modal__fields-list'>
+      <form className='modal__fields-list' onSubmit={formik.handleSubmit}>
         {
-          fields.map(({ labelName, placeholder }) => (
+          addMovieFields.map(({ labelName, placeholder }) => (
             <li key={labelName} className='modal__field'>
               <label className='modal__field-label'>
                 {labelName}
@@ -73,17 +95,17 @@ export const AddMovieModal = ({ onClose }) => {
             </li>
           ))
         }
-      </ul>
-      <div className='modal__button-wrapper'>
-        <ModalButton type='secondary' text='reset' onClick={onReset} />
-        <ModalButton type='primary' text='save' onClick={onClose} />
-      </div>
+        <div className='modal__button-wrapper'>
+          <ModalButton mode='secondary' type='button' text='reset' onClick={onReset} />
+          <ModalButton mode='primary' type='submit' text='save' />
+        </div>
+      </form>
       {
-        isGenrePickerModalOpened &&
-          <GenrePickerModal
+        isGenresPickerModalOpened &&
+          <GenresPickerModal
             pickedGenres={pickedGenres}
             onCheckBoxChange={onCheckBoxChange}
-            onClose={toggleGenrePickerModal}
+            onClose={toggleGenresPickerModal}
           />
       }
       <span className='modal__close' onClick={onClose} />
@@ -93,4 +115,5 @@ export const AddMovieModal = ({ onClose }) => {
 
 AddMovieModal.propTypes = {
   onClose: PropTypes.func,
+  addMovie: PropTypes.func,
 };

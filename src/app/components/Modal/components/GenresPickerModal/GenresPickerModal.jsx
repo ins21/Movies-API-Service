@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { genresList } from '@/data/genresList';
 
-import './GenrePickerModal.scss';
+import './GenresPickerModal.scss';
 
-export const GenrePickerModal = ({ onCheckBoxChange, pickedGenres, onClose }) =>
-  <div className='modal__genre-picker'>
+export const GenresPickerModal = ({ onCheckBoxChange, pickedGenres, onClose }) =>
+  <div className='modal__genres-picker'>
     {
       genresList.map(item =>
-        <label key={item} className='modal__genre-checkbox'>
+        <label key={item} className='modal__genres-checkbox'>
           <input
             type='checkbox'
             value={item}
@@ -24,7 +24,7 @@ export const GenrePickerModal = ({ onCheckBoxChange, pickedGenres, onClose }) =>
     <span className='modal__close' onClick={onClose} />
   </div>;
 
-GenrePickerModal.propTypes = {
+GenresPickerModal.propTypes = {
   pickedGenres: PropTypes.object,
   onCheckBoxChange: PropTypes.func,
   onClose: PropTypes.func,

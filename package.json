@@ -7,7 +7,7 @@
     "dev": "npm run lint && cross-env NODE_ENV=development webpack --mode development",
     "build": "npm run lint && cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "start": "npm run lint && cross-env NODE_ENV=development webpack-dev-server --mode development --open",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint --ext .js,.jsx ."
@@ -18,13 +18,17 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
+    "axios": "^0.20.0",
     "classnames": "^2.2.6",
+    "formik": "^2.1.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-router": "^5.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
