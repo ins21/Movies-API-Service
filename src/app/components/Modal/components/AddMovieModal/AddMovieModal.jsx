@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 
 import { ModalButton } from '../ModalButton/ModalButton';
 import { GenresPickerModal } from '../GenresPickerModal/GenresPickerModal';
-import { useToggle } from '@/utils/customHooks/useToggle';
+import { useToggle } from '../../../../../utils/customHooks/useToggle';
 import { addMovieFields } from './constants';
 import { formValidation } from '../../utils/formValidation';
 
