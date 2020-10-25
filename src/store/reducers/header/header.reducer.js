@@ -8,7 +8,7 @@ const initialStore = {
 const header = (store = initialStore, action) => {
   switch (action.type) {
   case SHOW_SEARCH:
-    return { headerContent: 'search', currentMovieId: null };
+    return { ...store, headerContent: 'search' };
   case SHOW_MOVIE_DETAILS:
     return { headerContent: 'movie-details', currentMovieId: action.payload.id };
   default:

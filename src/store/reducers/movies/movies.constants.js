@@ -4,3 +4,4 @@ export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 export const DELETE_MOVIE = 'DELETE_MOVIE';
 export const SET_FILTER = 'SET_FILTER';
 export const SET_SORTING_OPTION = 'SET_SORTING_OPTION';
+export const CLEAR_MOVIES_LIST = 'CLEAR_MOVIES_LIST';

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import searchIcon from './assets/search-icon.svg';
 import './MovieDetails.scss';
 
-export const MovieDetails = ({ showSearch, movie }) => {
+export const MovieDetails = ({ showSearch, movie = {} }) => {
   const { title, genres, release_date, poster_path, runtime, overview, vote_average } = movie;
 
   return (
@@ -17,7 +17,7 @@ export const MovieDetails = ({ showSearch, movie }) => {
         <h2 className='movie-details__title'>{title}
           <span className='movie-details__rating'>{vote_average || 'N/A'}</span>
         </h2>
-        <p className='movie-details__genres'>{genres.join(', ')}</p>
+        <p className='movie-details__genres'>{genres?.join(', ')}</p>
         <p className='movie-details__year-and-runtime'>
           <span className='movie-details__year'>{release_date?.slice(0, 4)}</span>
           <span className='movie-details__runtime'>{runtime} minutes</span>
