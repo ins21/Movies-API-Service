@@ -4,13 +4,12 @@
   "description": "Movies API Service app for ReactJS Global Mentoring Program",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run lint && cross-env NODE_ENV=development webpack --mode development",
-    "build": "npm run lint && cross-env NODE_ENV=production webpack --mode production",
-    "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
-    "start": "npm run lint && cross-env NODE_ENV=development webpack-dev-server --mode development --open",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "lint": "eslint --ext .js,.jsx ."
+    "lint": "eslint --ext .js,.jsx .",
+    "dev": "npm run lint && next dev",
+    "build": "npm run lint && next build",
+    "start": "next start"
   },
   "jest": {
     "snapshotSerializers": [
@@ -26,6 +25,8 @@
     "axios": "^0.20.0",
     "classnames": "^2.2.6",
     "formik": "^2.1.5",
+    "next": "10.0.1",
+    "next-images": "^1.6.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -33,6 +34,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },

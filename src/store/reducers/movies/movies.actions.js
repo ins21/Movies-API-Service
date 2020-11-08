@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 
-import { FETCH_MOVIES, UPDATE_MOVIE, ADD_MOVIE, DELETE_MOVIE, SET_FILTER, SET_SORTING_OPTION, CLEAR_MOVIES_LIST } from './movies.constants';
+import { PUSH_MOVIES_TO_STORE, UPDATE_MOVIE, ADD_MOVIE, DELETE_MOVIE, SET_FILTER, SET_SORTING_OPTION, CLEAR_MOVIES_LIST }
+  from './movies.constants';
 import { url } from '@/utils/constants';
 
 export const setFilter = name => ({
@@ -14,8 +15,8 @@ export const setSortingOption = name => ({
   payload: { name }
 });
 
-export const fetchMoviesAction = movies => ({
-  type: FETCH_MOVIES,
+export const pushMoviesToStore = movies => ({
+  type: PUSH_MOVIES_TO_STORE,
   payload: { movies }
 });
 
@@ -23,7 +24,7 @@ export const fetchMovies = (url) => async dispatch => {
   try {
     const response = await axios.get(url);
 
-    dispatch(fetchMoviesAction(response.data.data));
+    dispatch(pushMoviesToStore(response.data.data));
   } catch (error) {
     console.error('Movies were not fetched.', error);
   }

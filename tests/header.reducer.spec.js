@@ -9,6 +9,7 @@ describe('Header reducer', () => {
   it('Must work correctly for action.type "SHOW_SEARCH"', () => {
     expect(headerReducer({}, { type: 'SHOW_SEARCH' })).toEqual(
       {
+        currentMovieId: null,
         headerContent: 'search'
       }
     );

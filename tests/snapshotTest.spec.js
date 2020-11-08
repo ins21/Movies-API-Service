@@ -2,9 +2,8 @@ import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { AppTitle } from '../src/app/components/AppTitle/AppTitle.jsx';
 
-jest.mock('../src/app/components/AppTitle/AppTitle.scss', () => ({}));
+import { AppTitle } from '../src/components/AppTitle/AppTitle.jsx';
 
 configure({ adapter: new Adapter() });
 

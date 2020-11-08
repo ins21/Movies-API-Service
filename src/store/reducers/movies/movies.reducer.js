@@ -1,4 +1,5 @@
-import { FETCH_MOVIES, UPDATE_MOVIE, ADD_MOVIE, DELETE_MOVIE, SET_FILTER, SET_SORTING_OPTION, CLEAR_MOVIES_LIST } from './movies.constants';
+import { PUSH_MOVIES_TO_STORE, UPDATE_MOVIE, ADD_MOVIE, DELETE_MOVIE, SET_FILTER, SET_SORTING_OPTION, CLEAR_MOVIES_LIST }
+  from './movies.constants';
 
 const initialStore = {
   moviesList: [],
@@ -8,7 +9,7 @@ const initialStore = {
 
 const movies = (store = initialStore, { type, payload: { movies, movie, id, name } = {} }) => {
   switch (type) {
-  case FETCH_MOVIES:
+  case PUSH_MOVIES_TO_STORE:
     return { ...store, moviesList: [...store.moviesList, ...movies] };
   case ADD_MOVIE:
     return { ...store, moviesList: [...store.moviesList, movie] };

@@ -1,4 +1,18 @@
 @import "./constants/index";
+@import "../components/AppTitle/AppTitle.scss";
+@import "../components/ErrorPages/ErrorBoundary/ErrorBoundary.scss";
+@import "../components/ErrorPages/NotFoundPage/NotFoundPage.scss";
+@import "../components/Footer/Footer.scss";
+@import "../components/Header/Header.scss";
+@import "../components/Header/components/MovieDetails/MovieDetails.scss";
+@import "../components/Header/components/Search/Search.scss";
+@import "../components/Modal/Modal.scss";
+@import "../components/Modal/components/GenresPickerModal/GenresPickerModal.scss";
+@import "../components/Modal/components/ModalButton/ModalButton.scss";
+@import "../components/Movies/Movies.scss";
+@import "../components/Movies/components/MovieCard/MovieCard.scss";
+@import "../components/Movies/components/MoviesFilters/MoviesFilters.scss";
+@import "../components/Movies/components/MoviesList/MoviesList.scss";
 
 @font-face {
   font-family: 'Quicksand', sans-serif;
