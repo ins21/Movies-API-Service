@@ -1,12 +1,10 @@
 import React from 'react';
 import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
-import { AddMovieModal } from '../src/app/components/Modal/components/AddMovieModal/AddMovieModal';
-import { ModalButton } from '../src/app/components/Modal/components/ModalButton/ModalButton';
-import { GenresPickerModal } from '../src/app/components/Modal/components/GenresPickerModal/GenresPickerModal';
 
-jest.mock('../src/app/components/Modal/components/ModalButton/ModalButton.scss', () => ({}));
-jest.mock('../src/app/components/Modal/components/GenresPickerModal/GenresPickerModal.scss', () => ({}));
+import { AddMovieModal } from '../src/components/Modal/components/AddMovieModal/AddMovieModal';
+import { ModalButton } from '../src/components/Modal/components/ModalButton/ModalButton';
+import { GenresPickerModal } from '../src/components/Modal/components/GenresPickerModal/GenresPickerModal';
 
 configure({ adapter: new Adapter() });
 

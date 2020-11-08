@@ -1,4 +1,4 @@
-export const FETCH_MOVIES = 'FETCH_MOVIES';
+export const PUSH_MOVIES_TO_STORE = 'PUSH_MOVIES_TO_STORE';
 export const ADD_MOVIE = 'ADD_MOVIE';
 export const UPDATE_MOVIE = 'UPDATE_MOVIE';
 export const DELETE_MOVIE = 'DELETE_MOVIE';
